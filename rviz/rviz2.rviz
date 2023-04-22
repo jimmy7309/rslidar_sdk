@@ -68,8 +68,8 @@ Visualization Manager:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /velodyne_points
+        Reliability Policy: Best Effort
+        Value: /points_raw_cropbox_filtered
       Use Fixed Frame: true
       Use rainbow: true
       Value: true

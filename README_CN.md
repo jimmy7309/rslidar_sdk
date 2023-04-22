@@ -241,3 +241,11 @@ rslidar_sdk的功能通过配置参数文件来实现，请仔细阅读。
 
 引入 launch 文件，并修改对应的 rviz 配置
 
+## 2.3 点云预处理
+
+### 2.3.1 crop_box_filter
+
+因涉及 frame 改变，故需要提前准备 TF 变换：
+  ros2 run tf2_ros static_transform_publisher --x 0 --y 0 --z 1 --yaw 0 --pitch 0 --roll 0 --frame-id base_link --child-frame-id velodyne_top
+
+另，在 RVIZ 中查看输出话题 /points_raw_cropbox_filtered，需要 Reliability Policy 设置为 Best Effort
