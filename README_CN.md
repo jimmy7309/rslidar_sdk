@@ -222,3 +222,18 @@ rslidar_sdk的功能通过配置参数文件来实现，请仔细阅读。
 
 [录制ROS数据包然后播放它](doc/howto/11_how_to_record_replay_packet_rosbag_CN.md)
 
+
+# 2 **转换点云**
+
+## 2.1 确认rviz显示rslidar点云正常
+
+初始运行 ros2 launch rslidar_sdk start.launch
+在 RVIZ 界面会显示动态变化的点云，但左上角区域显示黄色警告“No tf data. Actual error: Frame [rslidar] does not exist”
+这实际是正常的，因为目前只有点云数据，缺少相关的 TF 坐标变换信息。
+
+执行 ros2 run tf2_ros static_transform_publisher --x 0 --y 0 --z 1 --yaw 0 --pitch 0 --roll 0 --frame-id map --child-frame-id rslidar
+必要的话，还可以执行 ros2 run tf2_ros tf2_monitor 查看 TF 变换
+
+参考资源：
+[ROS2机器人坐标工具→tf2静态广播←Python](https://blog.csdn.net/ZhangRelay/article/details/125083376)
+
