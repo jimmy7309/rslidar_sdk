@@ -2,6 +2,12 @@
   <node pkg="rslidar_sdk" name="rslidar_sdk_node" exec="rslidar_sdk_node" output="screen">
     <param name="config_path" value=""/>
   </node>
+  <!-- start rs_to_velodyne_ros2 -->
+  <include file="$(find-pkg-share rs_to_velodyne_ros2)/launch/rs_to_velodyne_ros2.launch.xml">
+    <arg name="input_points" value="/rslidar_points"/>
+    <arg name="output_points" value="/velodyne_points"/>
+    <arg name="output_frame_id" value="velodyne_top"/>
+  </include>
   <!-- rviz -->
   <node pkg="rviz2" name="rviz2" exec="rviz2" args="-d $(find-pkg-share rslidar_sdk)/rviz/rviz2.rviz" />
 </launch>

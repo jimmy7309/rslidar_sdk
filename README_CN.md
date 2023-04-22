@@ -237,3 +237,7 @@ rslidar_sdk的功能通过配置参数文件来实现，请仔细阅读。
 参考资源：
 [ROS2机器人坐标工具→tf2静态广播←Python](https://blog.csdn.net/ZhangRelay/article/details/125083376)
 
+## 2.2 转换为velodyne点云
+
+引入 launch 文件，并修改对应的 rviz 配置
+
