@@ -11,7 +11,7 @@
   <!-- start pointcloud_preprocessor -->
   <include file="$(find-pkg-share rslidar_sdk)/launch/singlepreprocessor.launch.xml">
     <arg name="input_points_raw" value="/velodyne_points"/>
-    <arg name="output_points_raw" value="/points_raw_cropbox_filtered"/>
+    <arg name="output_points_raw" value="/points_raw_preprocessed"/>
     <arg name="tf_output_frame" value="base_link"/>
   </include>
   <!-- rviz -->

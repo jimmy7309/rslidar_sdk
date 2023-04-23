@@ -70,21 +70,38 @@ def generate_launch_description():
             #    ),
             #),
             ("input", LaunchConfiguration("input_points_raw")),
-            ("output", LaunchConfiguration("output_points_raw")),
+            ("output", "self_cropped/pointcloud_ex"),
         ],
         parameters=[
             {
                 "input_frame": LaunchConfiguration("tf_output_frame"),
                 "output_frame": LaunchConfiguration("tf_output_frame"),
-                "min_x": -200.0,
-                "max_x": 1000.0,
-                "min_y": -50.0,
-                "max_y": 50.0,
-                "min_z": -2.0,
-                "max_z": 3.0,
-                "negative": False,
+                "min_x": -0.8,
+                "max_x": 0.8,
+                "min_y": -0.8,
+                "max_y": 0.8,
+                "min_z": -0.8,
+                "max_z": 0.8,
+                "negative": True,
             }
         ],
+        extra_arguments=[{"use_intra_process_comms": False}],
+    )
+
+    distortion_corrector_component = ComposableNode(
+        package="pointcloud_preprocessor",
+        plugin="pointcloud_preprocessor::DistortionCorrectorComponent",
+        name="distortion_corrector_node",
+        remappings=[
+            #("~/input/twist", "/sensing/vehicle_velocity_converter/twist_with_covariance"),
+            #("~/input/imu", "/sensing/imu/imu_data"),
+            ("~/input/twist", "/twist_with_covariance"),
+            ("~/input/imu", "/imu_data"),
+            ("~/input/pointcloud", "self_cropped/pointcloud_ex"),
+            #("~/output/pointcloud", "rectified/pointcloud_ex"),
+            ("~/output/pointcloud", LaunchConfiguration("output_points_raw")),
+        ],
+        extra_arguments=[{"use_intra_process_comms": False}],
     )
 
     # set container to run all required components in the same process
@@ -94,7 +111,7 @@ def generate_launch_description():
         package="rclcpp_components",
         executable="component_container",
         #composable_node_descriptions=[concat_component, cropbox_component],
-        composable_node_descriptions=[cropbox_component],
+        composable_node_descriptions=[cropbox_component, distortion_corrector_component],
         output="screen",
     )
 
