@@ -249,3 +249,8 @@ rslidar_sdk的功能通过配置参数文件来实现，请仔细阅读。
   ros2 run tf2_ros static_transform_publisher --x 0 --y 0 --z 1 --yaw 0 --pitch 0 --roll 0 --frame-id base_link --child-frame-id velodyne_top
 
 另，在 RVIZ 中查看输出话题 /points_raw_cropbox_filtered，需要 Reliability Policy 设置为 Best Effort
+
+### 2.3.2 distortion_corrector
+
+当前可显示此步处理后的点云，但仍须等待补充 /imu_data 和 /twist_with_covariance 数据，做进一步调整
+
