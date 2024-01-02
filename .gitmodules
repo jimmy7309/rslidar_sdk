@@ -1,4 +1,4 @@
 [submodule "src/rs_driver"]
 	path = src/rs_driver
-	url = https://ghproxy.com/https://github.com/jimmy7309/rs_driver.git
+	url = https://mirror.ghproxy.com/https://github.com/jimmy7309/rs_driver.git
 	branch = main
